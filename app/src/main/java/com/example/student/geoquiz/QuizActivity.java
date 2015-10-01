@@ -2,7 +2,6 @@ package com.example.student.geoquiz;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,9 +16,7 @@ import com.example.student.TrueFalse;
 public class QuizActivity extends Activity {
     private static final String TAG = "QuizActivity";
     private static final String KEY_INDEX = "index";
-    private Button mTrueButton;
     private Button mFalseButton;
-    private Button mNextButton;
     private TextView mQuestionTextView;
 
     private TrueFalse[] mQuestionBank = new TrueFalse[]{
@@ -32,22 +29,13 @@ public class QuizActivity extends Activity {
     private int mCurrentIndex = 0;
     private TrueFalse[] mAnswerKey;
 
+    public QuizActivity(TrueFalse[] answerKey) {
+        mAnswerKey = answerKey;
+    }
+
     private void updateQuestion() {
         int question = mAnswerKey[mCurrentIndex].getQuestion();
         mQuestionTextView.setText(question);
-    }
-
-    private void checkAnswer(boolean userPressedTrue) {
-        boolean answerIsTrue = mQuestionBank[mCurrentIndex].isTrueQuestion();
-
-        int messageRedId;
-
-        if (userPressedTrue == answerIsTrue) {
-            messageRedId = R.string.correct_toast;
-        } else {
-            messageRedId = R.string.incorrect_toast;
-        }
-        Toast.makeText(this, messageRedId, Toast.LENGTH_SHORT);
     }
 
     @Override
@@ -59,40 +47,10 @@ public class QuizActivity extends Activity {
         int question = mQuestionBank[mCurrentIndex].getQuestion();
         mQuestionTextView.setText(question);
 
-        mTrueButton = (Button) findViewById(R.id.true_button);
+        Button trueButton = (Button) findViewById(R.id.true_button);
         mFalseButton = (Button) findViewById(R.id.false_button);
 
-        mTrueButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onStart() {
-                super.onStart();
-                Log.d(TAG, "onStart() called");
-            }
-
-            @Override
-            public void onPause() {
-                super.onPause();
-                Log.d(TAG, "onPause() called");
-            }
-
-            @Override
-            public void onResume() {
-                super.onResume();
-                Log.d(TAG, "onResume() called");
-            }
-
-            @Override
-            public void onStop() {
-                super.onStop();
-                Log.d(TAG, "onStop() called");
-            }
-
-            @Override
-            public void onDestroy() {
-                super.onDestroy();
-                Log.d(TAG, "onDestroy() called");
-            }
+        trueButton.setOnClickListener(new View.OnClickListener() {
 
 
             @Override
@@ -101,8 +59,8 @@ public class QuizActivity extends Activity {
             }
         });
 
-        mNextButton = (Button) findViewById(R.id.next_button);
-        mNextButton.setOnClickListener(new View.OnClickListener() {
+        Button nextButton = (Button) findViewById(R.id.next_button);
+        nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
@@ -114,6 +72,38 @@ public class QuizActivity extends Activity {
         }
         updateQuestion();
     }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+        Log.d(TAG, "onStart() called");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d(TAG, "onPause() called");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume() called");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.d(TAG, "onStop() called");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy() called");
+    }
+
+
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
