@@ -13,11 +13,7 @@
     <string name="question_africa">The source of the Nile River is in Egypt.</string> <string name="question_americas">The Amazon River is the longest river
         in the Americas.</string>
     <string name="question_asia">Lake Baikal is the world\'s oldest and deepest
-        freshwater lake.</string>"
-    (Phillips 39)
-
-    Phillips, Bill, Brian Hardy. Android Programming: The Big Nerd Ranch Guide. Big Nerd Ranch Guides, 2013. VitalBook file.
-
-    The citation provided is a guideline. Please check each citation for accuracy before use.
-
+        freshwater lake.</string>
+    <string name="question_text"/>
+    <string name="action_settings"/>"
 </resources>
