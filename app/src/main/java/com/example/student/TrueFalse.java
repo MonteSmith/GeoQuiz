@@ -1,8 +1,5 @@
 package com.example.student;
 
-/**
- * Created by student on 9/19/2015.
- */
 public class TrueFalse {
     private int mQuestion;
 
